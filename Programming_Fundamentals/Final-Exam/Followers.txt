@@ -1,0 +1,37 @@
+dict_with_commands = {}
+command = input().split(':')
+sum_of_likes_and_comments = 0
+
+while command[0] != 'Log out':
+    action = command[0]
+    if action == 'New follower':
+        username = command[1]
+        if username not in dict_with_commands.keys():
+            dict_with_commands[username] = 0
+
+    elif action == 'Like':
+        username = command[1]
+        count = int(command[2])
+        if username not in dict_with_commands.keys():
+            dict_with_commands[username] = 0
+        dict_with_commands[username] += count
+    elif action == 'Comment':
+        username = command[1]
+        if username not in dict_with_commands.keys():
+            dict_with_commands[username] = 1
+        else:
+            dict_with_commands[username] += 1
+
+    elif action == 'Blocked':
+        username = command[1]
+        if username in dict_with_commands.keys():
+            dict_with_commands.pop(username)
+        else:
+            print(f"{username} doesn't exist.")
+
+
+    command = input().split(':')
+sum_of_likes_and_comments = len(dict_with_commands)
+print(f"{sum_of_likes_and_comments} followers")
+for key, value in dict_with_commands.items():
+    print(f'{key}: {value}')
