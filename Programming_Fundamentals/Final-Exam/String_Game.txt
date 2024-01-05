@@ -1,0 +1,35 @@
+receive_the_string = input()
+commands = input().split(' ')
+while commands[0] != 'Done':
+    if commands[0] == 'Change':
+        char = commands[1]
+        replacement = commands[2]
+        receive_the_string = receive_the_string.replace(char, replacement)
+        print(receive_the_string)
+    elif commands[0] == 'Includes':
+        substring = commands[1]
+        if substring in receive_the_string:
+            print('True')
+        else:
+            print('False')
+    elif commands[0] == 'End':
+        substring = commands[1]
+        if receive_the_string.endswith(substring):
+            print('True')
+        else:
+            print('False')
+    elif commands[0] == 'Uppercase':
+        receive_the_string = receive_the_string.upper()
+        print(receive_the_string)
+    elif commands[0] == 'FindIndex':
+        char = commands[1]
+        find_index = receive_the_string.find(char)
+        print(find_index)
+    elif commands[0] == 'Cut':
+        start_index = int(commands[1])
+        count = int(commands[2])
+        cut_text = receive_the_string[start_index:(count + start_index)]
+        print(cut_text)
+
+
+    commands = input().split(' ')
