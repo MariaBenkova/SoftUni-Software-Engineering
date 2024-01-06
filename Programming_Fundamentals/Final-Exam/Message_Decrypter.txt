@@ -1,0 +1,31 @@
+import re
+
+pattern = r'([$%])([A-Z][a-z]{3,})(\1): ([[0-9]+])\|([[0-9]+])\|([[0-9]+])\|'
+number_of_lines = int(input())
+
+for _ in range(number_of_lines):
+    current_string = input()
+    matches = re.match(pattern, current_string)
+
+    if matches:
+        symbols = ''
+        num1 = ''
+        num2 = ''
+        num3 = ''
+
+        tag = matches[2]
+        for num in matches[4]:
+            if num.isdigit():
+                num1 += num
+        for num in matches[5]:
+            if num.isdigit():
+                num2 += num
+        for num in matches[6]:
+            if num.isdigit():
+                num3 += num
+
+        symbols = chr(int(num1)) + chr(int(num2)) + chr(int(num3))
+
+        print(f"{tag}: {symbols}")
+    else:
+        print('Valid message not found!')
