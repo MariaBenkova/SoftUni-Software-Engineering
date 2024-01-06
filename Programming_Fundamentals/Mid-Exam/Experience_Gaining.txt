@@ -1,0 +1,26 @@
+number_of_exp = float(input())
+number_of_battle = int(input())
+all_exp = 0
+for i in range(1, number_of_battle + 1):
+   
+    current_battle = float(input())
+    all_exp += current_battle
+    if i % 15 == 0:
+        all_exp += current_battle * (5 / 100)
+    if i % 3 == 0:
+        all_exp += current_battle * (15 / 100)
+    if i % 5 == 0:
+        all_exp -= current_battle * (10 / 100)
+    if all_exp >= number_of_exp:
+        num_b = number_of_battle - i
+        total_number = number_of_battle - num_b
+        break
+
+if all_exp >= number_of_exp:
+    print(f'Player successfully collected his needed experience for {total_number} battles.')
+else:
+    diff = abs(all_exp - number_of_exp)
+    print(f'Player was not able to collect the needed experience, {diff:.2f} more needed.')
+
+
+

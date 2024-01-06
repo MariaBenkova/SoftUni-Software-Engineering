@@ -1,0 +1,38 @@
+travel_Titan = input().split('||')
+number_of_fuel = int(input())
+number_of_ammunition = int(input())
+is_true = True
+
+while is_true:
+    for cur_command in travel_Titan:
+       command = cur_command.split(' ')
+       if command[0] == 'Travel':
+           if int(command[1]) <= number_of_fuel:
+               number_of_fuel -= int(command[1])
+               print(f'The spaceship travelled {int(command[1])} light-years.')
+           else:
+               print(f'Mission failed.')
+               is_true = False
+               break
+       elif command[0] == 'Enemy':
+
+           if number_of_ammunition >= int(command[1]):
+               number_of_ammunition -= int(command[1])
+               print(f'An enemy with {int(command[1])} armour is defeated.')
+           elif number_of_fuel >= int(command[1]) * 2:
+               number_of_fuel -= int(command[1]) * 2
+               print(f'An enemy with {int(command[1])} armour is outmaneuvered.')
+           else:
+               print(f'Mission failed.')
+               is_true = False
+               break
+       elif command[0] == 'Repair':
+           number_of_fuel += int(command[1])
+           number_of_ammunition += int(command[1]) * 2
+           print(f'Ammunitions added: {int(command[1]) * 2}.')
+           print(f'Fuel added: {int(command[1])}.')
+       elif command[0] == 'Titan':
+           print(f'You have reached Titan, all passengers are safe.')
+           is_true = False
+           break
+
